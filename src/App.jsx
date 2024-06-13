@@ -1,9 +1,26 @@
-import React from 'react'
+import { useState } from "react";
+import Child from "./Child";
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+  const [parentInput, setParentInput] = useState("");
 
-export default App
+  const updateParentText = (childText) => {
+    setParentInput(childText);
+  };
+
+  return (
+    <div>
+      <label htmlFor="parentInput">Parent Component: </label>
+      <input
+        type="text"
+        placeholder="Parent Component..."
+        id="parentInput"
+        value={parentInput}
+        onChange={(e) => setParentInput(e.target.value)}
+      />
+      <Child updateParentText={updateParentText} />
+    </div>
+  );
+};
+
+export default App;
